@@ -1,0 +1,170 @@
+{% extends 'RefugeeApp/base.html' %}
+{% load static %}
+
+{% block title %}Beneficiary Registration{% endblock %}
+
+{% block content %}
+<!-- Left Sidebar -->
+<div class="left-panel">
+    <img src="{% static 'RefugeeApp/images/fca-logo.jpg' %}" alt="FCA Logo" class="sidebar-logo">
+    <h1 class="sidebar-title">Refugee Support Program</h1>
+</div>
+
+<!-- Right Form Section -->
+<div class="right-panel">
+    
+    <!-- Top Green Success Banner -->
+    {% if success %}
+    <div class="alert-success-banner">
+        <span>Registered successfully!</span>
+        <a href="{% url 'beneficiary_registration' %}" class="alert-close-btn" style="text-decoration:none;">&times;</a>
+    </div>
+    {% endif %}
+
+    <h2 class="form-header">BENEFICIARY REGISTRATION FORM</h2>
+
+    <form method="POST" action="{% url 'beneficiary_registration' %}">
+        {% csrf_token %}
+
+        <div class="form-grid">
+            
+            <!-- First Name -->
+            <div class="form-group">
+                <label>First Name <span class="req">*</span></label>
+                <input type="text" name="first_name" placeholder="Enter your First name" 
+                       value="{{ form.first_name.value|default:'' }}"
+                       class="{% if form.first_name.errors %}invalid-border{% endif %}">
+                {% if form.first_name.errors %}
+                    <div class="field-error-text" style="visibility: visible;">
+                        {% if form.first_name.errors.0 == "This field is required." %}This field is required{% else %}Invalid field{% endif %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <!-- Last Name -->
+            <div class="form-group">
+                <label>Last name <span class="req">*</span></label>
+                <input type="text" name="last_name" placeholder="Enter your Last name" 
+                       value="{{ form.last_name.value|default:'' }}"
+                       class="{% if form.last_name.errors %}invalid-border{% endif %}">
+                {% if form.last_name.errors %}
+                    <div class="field-error-text" style="visibility: visible;">
+                        {% if form.last_name.errors.0 == "This field is required." %}This field is required{% else %}Invalid field{% endif %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <!-- Date of Birth -->
+            <div class="form-group">
+                <label>Date of birth <span class="req">*</span></label>
+                <input type="date" name="date_of_birth"
+                      max="{{ form.date_of_birth.field.widget.attrs.max }}"
+                       value="{{ form.date_of_birth.value|default:'' }}"
+                       class="{% if form.date_of_birth.errors %}invalid-border{% endif %}">
+                {% if form.date_of_birth.errors %}
+                    <div class="field-error-text" style="visibility: visible;">
+                        {% if form.date_of_birth.errors.0 == "This field is required." %}This field is required{% else %}Invalid field{% endif %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <!-- Place of Birth -->
+            <div class="form-group">
+                <label>Place of Birth <span class="req">*</span></label>
+                <input type="text" name="place_of_birth" placeholder="Enter your place of residence" 
+                       value="{{ form.place_of_birth.value|default:'' }}"
+                       class="{% if form.place_of_birth.errors %}invalid-border{% endif %}">
+                {% if form.place_of_birth.errors %}
+                    <div class="field-error-text" style="visibility: visible;">
+                        {% if form.place_of_birth.errors.0 == "This field is required." %}This field is required{% else %}Invalid field{% endif %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <!-- Gender -->
+            <div class="form-group full-width">
+                <label>Gender</label>
+                <div class="radio-box">
+                    <label class="radio-option">
+                        <input type="radio" name="gender" value="Male" {% if form.gender.value == 'Male' %}checked{% endif %}> Male
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="gender" value="Female" {% if form.gender.value == 'Female' or not form.gender.value %}checked{% endif %}> Female
+                    </label>
+                </div>
+            </div>
+
+            <!-- Nationality -->
+            <div class="form-group">
+                <label>Nationality <span class="req">*</span></label>
+                <select name="nationality" class="{% if form.nationality.errors %}invalid-border{% endif %}">
+                    <option value="">-- Select Nationality --</option>
+                    <option value="Ugandan" {% if form.nationality.value == "Ugandan" %}selected{% endif %}>Ugandan</option>
+                    <option value="Kenyan" {% if form.nationality.value == "Kenyan" %}selected{% endif %}>Kenyan</option>
+                    <option value="Tanzanian" {% if form.nationality.value == "Tanzanian" %}selected{% endif %}>Tanzanian</option>
+                    <option value="Burundian" {% if form.nationality.value == "Burundian" %}selected{% endif %}>Burundian</option>
+                    <option value="Rwandese" {% if form.nationality.value == "Rwandese" %}selected{% endif %}>Rwandese</option>
+                    <option value="Somalian" {% if form.nationality.value == "Somalian" %}selected{% endif %}>Somalian</option>
+                    <option value="South Sudanese" {% if form.nationality.value == "South Sudanese" %}selected{% endif %}>South Sudanese</option>
+                </select>
+                {% if form.nationality.errors %}
+                    <div class="field-error-text" style="visibility: visible;">This field is required</div>
+                {% endif %}
+            </div>
+
+            <!-- Marital Status -->
+            <div class="form-group">
+                <label>Marital status <span class="req">*</span></label>
+                <select name="marital_status" class="{% if form.marital_status.errors %}invalid-border{% endif %}">
+                    <option value="">-- Select Marital status --</option>
+                    <option value="Single" {% if form.marital_status.value == "Single" %}selected{% endif %}>Single</option>
+                    <option value="Married" {% if form.marital_status.value == "Married" %}selected{% endif %}>Married</option>
+                    <option value="Divorced" {% if form.marital_status.value == "Divorced" %}selected{% endif %}>Divorced</option>
+                    <option value="Widowed" {% if form.marital_status.value == "Widowed" %}selected{% endif %}>Widowed</option>
+                    <option value="Separated" {% if form.marital_status.value == "Separated" %}selected{% endif %}>Separated</option>
+                </select>
+                {% if form.marital_status.errors %}
+                    <div class="field-error-text" style="visibility: visible;">This field is required</div>
+                {% endif %}
+            </div>
+
+            <!-- Settlement Camp -->
+            <div class="form-group">
+                <label>Settlement camp <span class="req">*</span></label>
+                <select name="settlement_camp" class="{% if form.settlement_camp.errors %}invalid-border{% endif %}">
+                    <option value="">-- Select settlement camp --</option>
+                    <option value="Gulu settlement camp" {% if form.settlement_camp.value == "Gulu settlement camp" %}selected{% endif %}>Gulu settlement camp</option>
+                    <option value="Arua settlement camp" {% if form.settlement_camp.value == "Arua settlement camp" %}selected{% endif %}>Arua settlement camp</option>
+                    <option value="Mbara settlement camp" {% if form.settlement_camp.value == "Mbara settlement camp" %}selected{% endif %}>Mbara settlement camp</option>
+                    <option value="Kasese settlement camp" {% if form.settlement_camp.value == "Kasese settlement camp" %}selected{% endif %}>Kasese settlement camp</option>
+                    <option value="Busia settlement camp" {% if form.settlement_camp.value == "Busia settlement camp" %}selected{% endif %}>Busia settlement camp</option>
+                    <option value="Mbale settlement camp" {% if form.settlement_camp.value == "Mbale settlement camp" %}selected{% endif %}>Mbale settlement camp</option>
+                    <option value="Kigezi settlement camp" {% if form.settlement_camp.value == "Kigezi settlement camp" %}selected{% endif %}>Kigezi settlement camp</option>
+                </select>
+                {% if form.settlement_camp.errors %}
+                    <div class="field-error-text" style="visibility: visible;">This field is required</div>
+                {% endif %}
+            </div>
+
+            <!-- Date of Joining Settlement -->
+            <div class="form-group">
+                <label>Date of joining Settlement camp <span class="req">*</span></label>
+                <input type="date" name="date_of_joining_settlement"
+                      max="{{ form.date_of_joining_settlement.field.widget.attrs.max }}"
+                       value="{{ form.date_of_joining_settlement.value|default:'' }}"
+                       class="{% if form.date_of_joining_settlement.errors %}invalid-border{% endif %}">
+                {% if form.date_of_joining_settlement.errors %}
+                    <div class="field-error-text" style="visibility: visible;">
+                        {% if form.date_of_joining_settlement.errors.0 == "This field is required." %}This field is required{% else %}Invalid field{% endif %}
+                    </div>
+                {% endif %}
+            </div>
+
+        </div>
+
+        <div style="text-align: right;">
+            <button type="submit" class="btn-submit">Register</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

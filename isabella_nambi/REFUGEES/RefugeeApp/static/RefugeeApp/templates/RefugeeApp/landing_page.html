@@ -1,0 +1,14 @@
+{% extends 'RefugeeApp/base.html' %}
+{% load static %}
+
+{% block title %}Welcome - Refugee Support Program{% endblock %}
+
+{% block content %}
+<div class="landing-body">
+    <div class="landing-card">
+        <img src="{% static 'RefugeeApp/images/fca-logo.jpg' %}" alt="FCA Logo" class="landing-logo">
+        <h1 class="landing-title">Refugee Support Program</h1>
+        <a href="{% url 'beneficiary_registration' %}" class="btn-landing">Register</a>
+    </div>
+</div>
+{% endblock %}

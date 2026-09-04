@@ -1,0 +1,47 @@
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; }
+
+body { display: flex; height: 100vh; background-color: #99CC33; overflow-x: hidden; }
+
+/* Landing Page Styling */
+.landing-body { display: flex; justify-content: center; align-items: center; width: 100vw; height: 100vh; background-color: #99CC33; }
+.landing-card { text-align: center; color: white; display: flex; flex-direction: column; align-items: center; }
+.landing-logo { width: 180px; height: 180px; margin-bottom: 1.5rem; }
+.landing-title { font-size: 2rem; font-weight: bold; margin-bottom: 2rem; letter-spacing: 1px; }
+.btn-landing { background: white; color: #99CC33; padding: 0.8rem 4rem; font-size: 1.2rem; font-weight: bold; border-radius: 4px; border: none; text-decoration: none; box-shadow: 0 4px 6px rgba(0,0,0,0.15); transition: 0.2s; }
+.btn-landing:hover { background: #f0f0f0; }
+
+/* Form Layout Styling */
+.left-panel { width: 45%; background-color: #99CC33; display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; text-align: center; }
+.sidebar-logo { width: 260px; height: 260px; margin-bottom: 1.5rem; }
+.sidebar-title { font-size: 2.2rem; font-weight: bold; letter-spacing: 1px; }
+
+.right-panel { width: 55%; background-color: white; padding: 2.5rem 3rem; overflow-y: auto; display: flex; flex-direction: column; }
+.form-header { color: #2E5316; text-align: center; font-size: 1.8rem; font-weight: 800; margin-bottom: 1.5rem; letter-spacing: 1px; }
+
+/* Form Inputs Grid */
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem 1.5rem; }
+.form-group { display: flex; flex-direction: column; margin-bottom: 0.5rem; position: relative; }
+.form-group.full-width { grid-column: span 2; }
+
+label { color: #333; font-weight: bold; font-size: 0.95rem; margin-bottom: 0.3rem; }
+label .req { color: red; margin-left: 2px; }
+
+input[type="text"], select { width: 100%; padding: 0.75rem; border: 1px solid #99CC33; font-size: 0.95rem; outline: none; background: white; transition: border-color 0.2s; }
+select { appearance: none; -webkit-appearance: none; background-image: url('data:image/svg+xml;utf8,<svg fill="%2099CC33" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>'); background-repeat: no-repeat; background-position: right 10px center; }
+
+/* Horizontal Radio Button Box */
+.radio-box { border: 1px solid #99CC33; padding: 0.75rem; display: flex; gap: 4rem; align-items: center; }
+.radio-option { display: flex; align-items: center; gap: 0.5rem; cursor: pointer; color: #333; font-weight: 500; }
+.radio-option input { accent-color: #99CC33; width: 18px; height: 18px; }
+
+/* Field Errors */
+.field-error-text { color: red; font-size: 0.8rem; text-align: right; margin-top: 2px; height: 14px; visibility: hidden; }
+.invalid-border { border-color: red !important; }
+
+/* Submit Button */
+.btn-submit { background-color: #99CC33; color: white; border: none; padding: 0.85rem; font-size: 1.2rem; font-weight: bold; border-radius: 6px; cursor: pointer; margin-top: 1rem; width: 35%; align-self: flex-end; box-shadow: 0 4px 6px rgba(0,0,0,0.15); }
+.btn-submit:hover { background-color: #88bb22; }
+
+/* Top Green Success Banner */
+.alert-success-banner { background-color: #00A859; color: white; padding: 0.6rem 1rem; display: flex; justify-content: space-between; align-items: center; border-radius: 2px; margin-bottom: 1rem; font-weight: 500; font-size: 0.9rem; }
+.alert-close-btn { background: transparent; border: none; color: white; font-size: 1.2rem; cursor: pointer; }
